@@ -1,4 +1,4 @@
-package fibrechannel_kubernetes_csi_driver
+package fc
 
 import (
 	"golang.org/x/net/context"
@@ -38,7 +38,7 @@ func (ids *FcIdentityServer) GetPluginCapabilities (ctx context.Context, req *cs
 			{
 				Type: &csi.PluginCapability_Service_{
 					Service: &csi.PluginCapability_Service{
-						Type: csi.PluginCapability_Service_CONTROLLER_SERVICE,
+						Type: csi.PluginCapability_Service_UNKNOWN,
 					},
 				},
 			},
