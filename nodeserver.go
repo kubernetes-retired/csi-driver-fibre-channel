@@ -27,6 +27,8 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 	disk, connectError := fibrechannel.Connect(*fcDevice.connector)
 
 	fcDisk.disk = disk
+	fcmounter := getFCDiskMounter(req)
+	fibrechannel.MountDisk(*fcmounter, disk)
 
 	if connectError != nil {
 		return nil, connectError

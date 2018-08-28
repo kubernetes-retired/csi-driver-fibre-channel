@@ -5,6 +5,8 @@ import (
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
 	"fmt"
 	"encoding/json"
+	"k8s.io/kubernetes/pkg/util/mount"
+	"k8s.io/kubernetes/pkg/volume/util"
 )
 
 type fcDevice struct {
@@ -45,4 +47,20 @@ func getFCInfo(req *csi.NodePublishVolumeRequest) (*fcDevice, error) {
 		connector: fcConnector,
 	}, nil
 
+}
+
+func getFCDiskMounter(req *csi.NodePublishVolumeRequest) *fibrechannel.FCMounter {
+	readOnly := req.GetReadonly()
+	fsType := req.GetVolumeCapability().GetMount().GetFsType()
+	mountOptions := req.GetVolumeCapability().GetMount().GetMountFlags()
+
+	return &fibrechannel.FCMounter{
+		fsType:       fsType,
+		readOnly:     readOnly,
+		mountOptions: mountOptions,
+		mounter:      &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: mount.NewOsExec()},
+		exec:         mount.NewOsExec(),
+		targetPath:   req.GetTargetPath(),
+		deviceUtil:   util.NewDeviceHandler(util.NewIOHandler()),
+	}
 }
