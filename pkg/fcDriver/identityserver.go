@@ -19,13 +19,8 @@ func (ids *FcIdentityServer) GetPluginInfo(ctx context.Context, req *csi.GetPlug
 		return nil, status.Error(codes.Unavailable, "Driver name not configured")
 	}
 
-	if ids.Driver.version == "" {
-		return nil, status.Error(codes.Unavailable, "Driver is missing version")
-	}
-
 	return &csi.GetPluginInfoResponse{
 		Name:          ids.Driver.name,
-		VendorVersion: ids.Driver.version,
 	}, nil
 
 }
