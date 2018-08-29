@@ -1,9 +1,9 @@
 package fc
 
 import (
-	"golang.org/x/net/context"
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
 	"github.com/golang/glog"
+	"golang.org/x/net/context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -30,11 +30,11 @@ func (ids *FcIdentityServer) GetPluginInfo(ctx context.Context, req *csi.GetPlug
 
 }
 
-func (ids *FcIdentityServer) GetPluginCapabilities (ctx context.Context, req *csi.GetPluginCapabilitiesRequest) (*csi.GetPluginCapabilitiesResponse, error) {
+func (ids *FcIdentityServer) GetPluginCapabilities(ctx context.Context, req *csi.GetPluginCapabilitiesRequest) (*csi.GetPluginCapabilitiesResponse, error) {
 	glog.V(5).Infof("Getting FC Plugin Capabilities")
 
 	return &csi.GetPluginCapabilitiesResponse{
-		Capabilities: []*csi.PluginCapability {
+		Capabilities: []*csi.PluginCapability{
 			{
 				Type: &csi.PluginCapability_Service_{
 					Service: &csi.PluginCapability_Service{
@@ -50,4 +50,3 @@ func (ids *FcIdentityServer) Probe(ctx context.Context, req *csi.ProbeRequest) (
 	//Currently csi spec does not specify what to return, so returning an empty response
 	return &csi.ProbeResponse{}, nil
 }
-

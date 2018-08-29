@@ -1,17 +1,17 @@
 package fc
 
 import (
-	"github.com/j-griffith/csi-connectors/fibrechannel"
-	"github.com/container-storage-interface/spec/lib/go/csi/v0"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/container-storage-interface/spec/lib/go/csi/v0"
+	"github.com/j-griffith/csi-connectors/fibrechannel"
 	"k8s.io/kubernetes/pkg/util/mount"
 	"k8s.io/kubernetes/pkg/volume/util"
 )
 
 type fcDevice struct {
 	connector *fibrechannel.Connector
-	disk string
+	disk      string
 }
 
 func getFCInfo(req *csi.NodePublishVolumeRequest) (*fcDevice, error) {
@@ -38,8 +38,8 @@ func getFCInfo(req *csi.NodePublishVolumeRequest) (*fcDevice, error) {
 	fcConnector := &fibrechannel.Connector{
 		VolumeName: volName,
 		TargetWWNs: targetList,
-		WWIDs: wwidList,
-		Lun: lun,
+		WWIDs:      wwidList,
+		Lun:        lun,
 	}
 
 	//Only pass the connector
@@ -54,12 +54,12 @@ func getFCDiskMounter(req *csi.NodePublishVolumeRequest) *fibrechannel.FCMounter
 	fsType := req.GetVolumeCapability().GetMount().GetFsType()
 	mountOptions := req.GetVolumeCapability().GetMount().GetMountFlags()
 	return &fibrechannel.FCMounter{
-		ReadOnly: readOnly,
-		FsType: fsType,
+		ReadOnly:     readOnly,
+		FsType:       fsType,
 		MountOptions: mountOptions,
-		Mounter: &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: mount.NewOsExec()},
-		Exec: mount.NewOsExec(),
-		DeviceUtil: util.NewDeviceHandler(util.NewIOHandler()),
-		TargetPath: req.GetTargetPath(),
+		Mounter:      &mount.SafeFormatAndMount{Interface: mount.New(""), Exec: mount.NewOsExec()},
+		Exec:         mount.NewOsExec(),
+		DeviceUtil:   util.NewDeviceHandler(util.NewIOHandler()),
+		TargetPath:   req.GetTargetPath(),
 	}
 }

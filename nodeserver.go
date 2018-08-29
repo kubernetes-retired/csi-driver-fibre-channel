@@ -1,12 +1,15 @@
 package fc
+
 import (
+	"github.com/container-storage-interface/spec/lib/go/csi/v0"
 	"github.com/j-griffith/csi-connectors/fibrechannel"
 	"golang.org/x/net/context"
-	"github.com/container-storage-interface/spec/lib/go/csi/v0"
 )
+
 type fcNodeServer struct {
 	Driver *CSIDriver
 }
+
 var fcDisk fcDevice
 
 func (ns *fcNodeServer) NodeStageVolume(ctx context.Context, req *csi.NodeStageVolumeRequest) (*csi.NodeStageVolumeResponse, error) {
@@ -27,6 +30,8 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 	disk, connectError := fibrechannel.Connect(*fcDevice.connector)
 
 	fcDisk.disk = disk
+
+	//Mount
 	fcmounter := getFCDiskMounter(req)
 	fibrechannel.MountDisk(*fcmounter, disk)
 
@@ -34,17 +39,14 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 		return nil, connectError
 	}
 
-	//Need to add mounting
-	return nil, nil
+	return &csi.NodePublishVolumeResponse{}, nil
 }
 
 func (ns *fcNodeServer) NodeUnpublishVolume(ctx context.Context, req *csi.NodeUnpublishVolumeRequest) (*csi.NodeUnpublishVolumeResponse, error) {
-
-	//Need to Add unmount
 
 	if err := fibrechannel.Disconnect(*fcDisk.connector, fcDisk.disk); err != nil {
 		return nil, err
 	}
 
-	return nil, nil
+	return &csi.NodeUnpublishVolumeResponse{}, nil
 }

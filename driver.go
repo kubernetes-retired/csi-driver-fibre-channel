@@ -1,21 +1,20 @@
 package fc
 
 import (
+	"fmt"
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
 	"github.com/golang/glog"
-	"google.golang.org/grpc/status"
 	"google.golang.org/grpc/codes"
-	"fmt"
+	"google.golang.org/grpc/status"
 )
 
 type CSIDriver struct {
-	name string
-	nodeID string
+	name    string
+	nodeID  string
 	version string
-	csCap     []*csi.ControllerServiceCapability
-	vcCap     []*csi.VolumeCapability_AccessMode
+	csCap   []*csi.ControllerServiceCapability
+	vcCap   []*csi.VolumeCapability_AccessMode
 }
-
 
 func NewCSIDriver(name string, v string, nodeID string) *CSIDriver {
 	glog.Infof("Driver: %v version: %v nodeID: %v", name, v, nodeID)
