@@ -67,5 +67,5 @@ func NewIdentityServer(d *CSIDriver) *FcIdentityServer {
 }
 
 func (d *CSIDriver) Run() {
-	RunNodePublishServer(d, NewNodeServer(d))
+	RunNodePublishServer(d, NewNodeServer(d), NewIdentityServer(d))
 }

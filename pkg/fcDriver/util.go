@@ -5,9 +5,7 @@ import (
 	"github.com/kubernetes-csi/drivers/pkg/csi-common"
 )
 
-func RunNodePublishServer(d *CSIDriver, ns csi.NodeServer) {
-	ids := NewIdentityServer(d)
-
+func RunNodePublishServer(d *CSIDriver, ns csi.NodeServer, ids csi.IdentityServer) {
 	s := csicommon.NewNonBlockingGRPCServer()
 	s.Start(d.endpoint, ids, nil, ns)
 	s.Wait()
