@@ -1,4 +1,4 @@
-package fc
+package main
 
 import (
 	"flag"

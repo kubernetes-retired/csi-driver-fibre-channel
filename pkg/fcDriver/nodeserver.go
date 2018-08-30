@@ -76,8 +76,3 @@ func (ns *fcNodeServer) NodeGetInfo(ctx context.Context, req *csi.NodeGetInfoReq
 		NodeId: ns.Driver.nodeID,
 	}, nil
 }
-
-func (ns *fcNodeServer) NodeGetVolumeStats(ctx context.Context, req *csi.NodeGetVolumeStatsRequest) (*csi.NodeGetVolumeStatsResponse, error) {
-	//Deprecated
-	return &csi.NodeGetVolumeStatsResponse{}, nil
-}
