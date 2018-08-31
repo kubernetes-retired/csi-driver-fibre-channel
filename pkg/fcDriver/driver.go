@@ -7,6 +7,7 @@ import (
 
 type CSIDriver struct {
 	name     string
+	version  string
 	nodeID   string
 	endpoint string
 
@@ -15,7 +16,8 @@ type CSIDriver struct {
 }
 
 const (
-	driverName = "fibrechannel"
+	driverVersion = "0.1.0"
+	driverName    = "fibrechannel"
 )
 
 func NewDriver(nodeID string, endpoint string) *CSIDriver {
@@ -33,6 +35,7 @@ func NewDriver(nodeID string, endpoint string) *CSIDriver {
 
 	driver := CSIDriver{
 		name:     driverName,
+		version:  driverVersion,
 		nodeID:   nodeID,
 		endpoint: endpoint,
 	}

@@ -21,6 +21,7 @@ func (ids *FcIdentityServer) GetPluginInfo(ctx context.Context, req *csi.GetPlug
 
 	return &csi.GetPluginInfoResponse{
 		Name:          ids.Driver.name,
+		VendorVersion: ids.Driver.version,
 	}, nil
 
 }

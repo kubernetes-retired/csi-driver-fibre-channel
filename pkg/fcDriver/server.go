@@ -1,15 +1,15 @@
 package fc
 
 import (
+	"fmt"
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
-	"sync"
-	"google.golang.org/grpc"
 	"github.com/golang/glog"
 	"golang.org/x/net/context"
-	"os"
+	"google.golang.org/grpc"
 	"net"
+	"os"
 	"strings"
-	"fmt"
+	"sync"
 )
 
 // Defines Non blocking GRPC server interfaces
@@ -90,7 +90,7 @@ func (s *nonBlockingGRPCServer) serve(endpoint string, ids csi.IdentityServer, c
 		csi.RegisterNodeServer(server, ns)
 	}
 
-	glog.Infof("Listening for connections on address: %#v", listener.Addr())
+	glog.Infof("Listening for connections on address: %v", listener.Addr())
 
 	server.Serve(listener)
 
