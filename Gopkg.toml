@@ -35,7 +35,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/j-griffith/csi-connectors"
+  name = "github.com/mathu97/csi-connectors"
 
 [[constraint]]
   name = "github.com/spf13/cobra"

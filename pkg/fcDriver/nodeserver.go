@@ -2,7 +2,7 @@ package fc
 
 import (
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
-	"github.com/j-griffith/csi-connectors/fibrechannel"
+	"github.com/mathu97/csi-connectors/fibrechannel"
 	"golang.org/x/net/context"
 )
 

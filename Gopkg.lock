@@ -116,7 +116,7 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/j-griffith/csi-connectors"
+  name = "github.com/mathu97/csi-connectors"
   packages = ["fibrechannel"]
   revision = "a618995c6a98b6e359d13ba9d3bfc59f5d785846"
 
