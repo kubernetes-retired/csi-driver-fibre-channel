@@ -26,7 +26,7 @@
     "digestset",
     "reference"
   ]
-  revision = "b12bd4004afc203f1cbd2072317c8fda30b89710"
+  revision = "90705d2fb81dda1466be49bd958ed8a0dd9a6145"
 
 [[projects]]
   name = "github.com/ghodss/yaml"
@@ -116,8 +116,8 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/mathu97/csi-connectors"
-  packages = ["fibrechannel"]
+  name = "github.com/j-griffith/csi-connectors"
+  packages = ["logger"]
   revision = "a618995c6a98b6e359d13ba9d3bfc59f5d785846"
 
 [[projects]]
@@ -125,6 +125,12 @@
   packages = ["."]
   revision = "1624edc4454b8682399def8740d46db5e4362ba4"
   version = "v1.1.5"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mathu97/csi-connectors"
+  packages = ["fibrechannel"]
+  revision = "e034ca4d5157efd6f560d747c132614f67df2fb1"
 
 [[projects]]
   name = "github.com/matttproud/golang_protobuf_extensions"
@@ -216,7 +222,7 @@
     "pbkdf2",
     "ssh/terminal"
   ]
-  revision = "614d502a4dac94afa3a6ce146bd1736da82514c6"
+  revision = "182538f80094b6a8efaade63a8fd8e0d9d5843dd"
 
 [[projects]]
   branch = "master"
@@ -239,7 +245,7 @@
     "unix",
     "windows"
   ]
-  revision = "49385e6e15226593f68b26af201feec29d5bba22"
+  revision = "fa5fdf94c78965f1aa8423f0cc50b8b8d728b05a"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -433,7 +439,7 @@
     "pkg/features",
     "pkg/util/feature"
   ]
-  revision = "2603dd2bc0e24fdeb1cea6d10d079071057a64d9"
+  revision = "498c246d7a5f1bc1e85cb68361520d327f67dd11"
 
 [[projects]]
   name = "k8s.io/client-go"
@@ -627,6 +633,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "632ec001474eb5a8717ad3218f016699bbc752594672e60e477a489716697267"
+  inputs-digest = "63c8897457f2bb4e28b1ef3e3e330c8744ae99c685e5889892ca317b23ba5ca7"
   solver-name = "gps-cdcl"
   solver-version = 1
