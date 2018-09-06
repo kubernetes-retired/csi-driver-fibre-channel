@@ -1,37 +1,19 @@
-# Fibre Channel CSI Driver
+# csi-driver-fibre-channel
 
-## Usage:
+TBD
 
-### Start Fibre Channel driver
-```
-$ sudo ./_output/fibrechannel --endpoint tcp://127.0.0.1:10000 --nodeid <CSINode>
-```
+## Community, discussion, contribution, and support
 
-### Test driver using csc
-Get ```csc``` tool from https://github.com/rexray/gocsi/tree/master/csc
+Learn how to engage with the Kubernetes community on the [community page](http://kubernetes.io/community/).
 
-#### Get plugin info
-```
-$ csc identity plugin-info --endpoint tcp://127.0.0.1:10000
-"fibrechannel"	"0.1.0"
-```
+You can reach the maintainers of this project at:
 
-#### NodePublish a volume
-```
-$ export TARGET_WWNS="[\"<A Target WWN>\"]")
-$ export WWIDS="[]"
-$ csc node publish --endpoint tcp://127.0.0.1:10000 --attrib targetWWNs=$TARGET_WWNS --atrib WWIDs=$WWIDS --attrib lun=1 fctestvol
-fctestvol
-```
+- [Slack](http://slack.k8s.io/)
+- [Mailing List](https://groups.google.com/forum/#!forum/kubernetes-dev)
 
-#### NodeUnpublish a volume
-```
-$ csc node unpublish --endpoint tcp://127.0.0.1:10000 fctestvol
-fctestvol
-```
+### Code of conduct
 
-#### Get NodeID
-```
-$ csc node get-id --endpoint tcp://127.0.0.1:10000
-<CSINode>
-```
+Participation in the Kubernetes community is governed by the [Kubernetes Code of Conduct](code-of-conduct.md).
+
+[owners]: https://git.k8s.io/community/contributors/guide/owners.md
+[Creative Commons 4.0]: https://git.k8s.io/website/LICENSE

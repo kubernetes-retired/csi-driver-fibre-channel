@@ -3,8 +3,6 @@ IMAGE_NAME=fcplugin
 IMAGE_VERSION=canary
 IMAGE_TAG=$(REGISTRY_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION)
 
-#.PHONY: all clean fibrechannel fc-container
-
 all: fibrechannel
 
 fibrechannel:
