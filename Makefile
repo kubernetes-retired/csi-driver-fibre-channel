@@ -1,9 +1,11 @@
 REGISTRY_NAME=quay.io/k8scsi
 IMAGE_NAME=fcplugin
-IMAGE_VERSION=canary
+IMAGE_VERSION=v0.1
 IMAGE_TAG=$(REGISTRY_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION)
 
-all: fibrechannel
+#.PHONY: all clean fibrechannel fc-container
+
+all: fibrechannel fc-container
 
 fibrechannel:
 	if [ ! -d ./vendor ]; then dep ensure -vendor-only; fi
