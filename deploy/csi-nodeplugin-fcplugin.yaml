@@ -15,6 +15,8 @@ spec:
       hostNetwork: true
       containers:
         - name: driver-registrar
+          securityContext:
+            privileged: true
           image: quay.io/k8scsi/driver-registrar:v0.3.0
           args:
             - "--v=5"
