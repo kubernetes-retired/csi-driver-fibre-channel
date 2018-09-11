@@ -40,7 +40,7 @@ spec:
               mountPath: /var/lib/csi/sockets/pluginproxy/
 
         - name: fc
-          image: quay.io/k8scsi/fcplugin:v0.1
+          image: quay.io/mathu97/fcplugin:v0.1
           args :
             - "--nodeid=$(NODE_ID)"
             - "--endpoint=$(CSI_ENDPOINT)"
