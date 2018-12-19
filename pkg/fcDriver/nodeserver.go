@@ -2,7 +2,7 @@ package fc
 
 import (
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
-	"github.com/mathu97/csi-connectors/fibrechannel"
+	"github.com/kubernetes-csi/csi-lib-fc/fibrechannel"
 	"golang.org/x/net/context"
 )
 
@@ -27,13 +27,13 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 		return nil, err
 	}
 	fcDisk = *fcDevice
-	disk, connectError := fibrechannel.Connect(*fcDevice.connector)
+	disk, connectError := fibrechannel.Attach(*fcDevice.connector, &fibrechannel.OSioHandler{})
 
 	fcDisk.disk = disk
 
 	//Mount
 	fcmounter := getFCDiskMounter(req)
-	fibrechannel.MountDisk(*fcmounter, disk)
+	MountDisk(fcmounter, disk)
 
 	if connectError != nil {
 		return nil, connectError
@@ -44,7 +44,7 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 
 func (ns *fcNodeServer) NodeUnpublishVolume(ctx context.Context, req *csi.NodeUnpublishVolumeRequest) (*csi.NodeUnpublishVolumeResponse, error) {
 
-	if err := fibrechannel.Disconnect(*fcDisk.connector, fcDisk.disk); err != nil {
+	if err := fibrechannel.Detach(fcDisk.disk, &fibrechannel.OSioHandler{}); err != nil {
 		return nil, err
 	}
 

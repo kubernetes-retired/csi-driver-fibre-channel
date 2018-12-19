@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/container-storage-interface/spec/lib/go/csi/v0"
-	"github.com/mathu97/csi-connectors/fibrechannel"
+	"github.com/kubernetes-csi/csi-lib-fc/fibrechannel"
 	"k8s.io/kubernetes/pkg/util/mount"
 	"k8s.io/kubernetes/pkg/volume/util"
 )
@@ -49,11 +49,11 @@ func getFCInfo(req *csi.NodePublishVolumeRequest) (*fcDevice, error) {
 
 }
 
-func getFCDiskMounter(req *csi.NodePublishVolumeRequest) *fibrechannel.FCMounter {
+func getFCDiskMounter(req *csi.NodePublishVolumeRequest) FCMounter {
 	readOnly := req.GetReadonly()
 	fsType := req.GetVolumeCapability().GetMount().GetFsType()
 	mountOptions := req.GetVolumeCapability().GetMount().GetMountFlags()
-	return &fibrechannel.FCMounter{
+	return FCMounter{
 		ReadOnly:     readOnly,
 		FsType:       fsType,
 		MountOptions: mountOptions,
