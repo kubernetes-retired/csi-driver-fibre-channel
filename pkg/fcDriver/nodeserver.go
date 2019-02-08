@@ -16,7 +16,7 @@ limitations under the License.
 package fc
 
 import (
-	"github.com/container-storage-interface/spec/lib/go/csi/v0"
+	"github.com/container-storage-interface/spec/lib/go/csi"
 	"github.com/kubernetes-csi/csi-lib-fc/fibrechannel"
 	"golang.org/x/net/context"
 )
@@ -48,7 +48,11 @@ func (ns *fcNodeServer) NodePublishVolume(ctx context.Context, req *csi.NodePubl
 
 	//Mount
 	fcmounter := getFCDiskMounter(req)
-	MountDisk(fcmounter, disk)
+	mountError := MountDisk(fcmounter, disk)
+
+	if mountError != nil {
+		return nil, mountError
+	}
 
 	if connectError != nil {
 		return nil, connectError
@@ -77,12 +81,6 @@ func (ns *fcNodeServer) NodeGetCapabilities(context.Context, *csi.NodeGetCapabil
 				},
 			},
 		},
-	}, nil
-}
-
-func (ns *fcNodeServer) NodeGetId(ctx context.Context, req *csi.NodeGetIdRequest) (*csi.NodeGetIdResponse, error) {
-	return &csi.NodeGetIdResponse{
-		NodeId: ns.Driver.nodeID,
 	}, nil
 }
 

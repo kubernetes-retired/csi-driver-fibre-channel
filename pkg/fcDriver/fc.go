@@ -18,7 +18,7 @@ package fc
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/container-storage-interface/spec/lib/go/csi/v0"
+	"github.com/container-storage-interface/spec/lib/go/csi"
 	"github.com/kubernetes-csi/csi-lib-fc/fibrechannel"
 	"k8s.io/kubernetes/pkg/util/mount"
 	"k8s.io/kubernetes/pkg/volume/util"
@@ -31,9 +31,9 @@ type fcDevice struct {
 
 func getFCInfo(req *csi.NodePublishVolumeRequest) (*fcDevice, error) {
 	volName := req.GetVolumeId()
-	lun := req.GetVolumeAttributes()["lun"]
-	targetWWNs := req.GetVolumeAttributes()["targetWWNs"]
-	wwids := req.GetVolumeAttributes()["WWIDs"]
+	lun := req.GetVolumeContext()["lun"]
+	targetWWNs := req.GetVolumeContext()["targetWWNs"]
+	wwids := req.GetVolumeContext()["WWIDs"]
 
 	if lun == "" || (targetWWNs == "" && wwids == "") {
 		return nil, fmt.Errorf("FC target information is missing")

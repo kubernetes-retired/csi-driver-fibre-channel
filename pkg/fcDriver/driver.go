@@ -16,7 +16,7 @@ limitations under the License.
 package fc
 
 import (
-	"github.com/container-storage-interface/spec/lib/go/csi/v0"
+	"github.com/container-storage-interface/spec/lib/go/csi"
 	"github.com/golang/glog"
 )
 
@@ -31,7 +31,7 @@ type CSIDriver struct {
 }
 
 const (
-	driverVersion = "0.1.0"
+	driverVersion = "1.0.0"
 	driverName    = "fibrechannel"
 )
 

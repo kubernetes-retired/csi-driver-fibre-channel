@@ -19,7 +19,6 @@ import (
 	"flag"
 	"fmt"
 	"github.com/mathu97/FC-CSI-Driver/pkg/fcDriver"
-	"github.com/mathu97/fibrechannel-kubernetes-csi-driver/pkg/fcDriver"
 
 	"github.com/spf13/cobra"
 	"os"
