@@ -13,6 +13,6 @@ spec:
     driver: fibrechannel
     volumeHandle: data-id
     volumeAttributes:
-        targetWWNS: "[\"500a0982991b8dc5\"]"
+        targetWWNs: "[\"500a0982991b8dc5\"]"
         lun: "1"
         WWIDs: "[]"  
