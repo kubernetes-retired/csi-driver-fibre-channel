@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-fcplugin
+  labels:
+    name: data-fcplugin
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Mi
+  csi:
+    driver: fibrechannel
+    volumeHandle: data-id
+    volumeAttributes:
+        targetWWNs: "[\"500a0982991b8dc5\"]"
+        lun: "1"
+        WWIDs: "[]"  

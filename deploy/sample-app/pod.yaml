@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: csi-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: maersk/nginx
+    volumeMounts:
+    - mountPath: "/mnt/fc"
+      name: fc
+  volumes:
+  - name: fc
+    persistentVolumeClaim:
+      claimName: claim1
+
