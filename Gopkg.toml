@@ -1,0 +1,20 @@
+[prune]
+  go-tests = true
+  unused-packages = true
+
+[[constraint]]
+  name = "k8s.io/kubernetes"
+  branch = "master"
+  source = "github.com/kubernetes/kubernetes"
+
+[[constraint]]
+  name = "github.com/container-storage-interface/spec"
+  version = "1.0.0"
+
+[[constraint]]
+  name = "github.com/kubernetes-csi/csi-lib-fc"
+  branch = "master"
+
+[[constraint]]
+  name = "github.com/kubernetes-csi/drivers"
+  version = "v1.0.2"
