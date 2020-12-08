@@ -1,6 +1,6 @@
-# csi-driver-fibre-channel
+# ARCHIVED: csi-driver-fibre-channel
 
-TBD
+This project is not maintained and has been archived.
 
 ## Community, discussion, contribution, and support
 
